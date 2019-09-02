@@ -1,1 +1,1 @@
-# differntial_eq_pendulum
+# differntial_equations
