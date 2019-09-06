@@ -13,8 +13,8 @@ def get_his_love_dot(her_love):
 def get_her_love_dot(his_love):
     return - (b * his_love)
 
-def get_her_more_love_dot(his_love, her_love):
-    return -(mu * her_love) - (b * his_love)
+def get_his_more_love_dot(his_love, her_love):
+    return a * her_love - (mu)* his_love
 
 
 def love(t):
@@ -48,14 +48,16 @@ def too_in_love(t):
     her_more_love_array = np.array([HER_LOVE])
     
     for time in np.arange(0, t, delta_t):
-        her_love_dot = get_her_more_love_dot(his_love, her_love)
-        his_love_dot = get_his_love_dot(her_love)
+        her_love_dot = get_her_love_dot(his_love)
+        his_love_dot = get_his_more_love_dot(his_love, her_love)
+        
+        his_love += his_love_dot * delta_t
+        his_more_love_array = np.append(his_more_love_array, his_love)
         
         her_love += her_love_dot * delta_t
         her_more_love_array = np.append(her_more_love_array, her_love)
         
-        his_love += his_love_dot * delta_t
-        his_more_love_array = np.append(his_more_love_array, his_love)
+        
         
     return his_more_love_array, her_more_love_array
 
